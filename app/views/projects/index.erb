@@ -17,7 +17,12 @@
     <td><%=project.genre%></td>
     <td><a href="/projects/<%= project.id %>">More info</a></td>
     <td><a href="/projects/<%= project.id %>/edit">Edit</a></td>
-    <td><a href="#">Delete</a></td>
+    <td>
+    <form action="/projects/<%= project.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete" class="waves-effect waves-light btn-small light-blue accent-2">
+  </form>
+    </td>
   </tr>
   <% end %>
 </tbody>
