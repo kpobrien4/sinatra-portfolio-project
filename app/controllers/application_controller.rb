@@ -8,7 +8,6 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    @projects = Project.all
     erb :welcome
   end
 
