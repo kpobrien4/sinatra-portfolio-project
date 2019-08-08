@@ -1,0 +1,29 @@
+<h1>Artists</h1>
+<table>
+<thead>
+  <tr>
+      <th>Name</th>
+      <th>Skills</th>
+      <th></th>
+      <th></th>
+      <th></th>
+  </tr>
+</thead>
+
+<tbody>
+<% @artists.each do |artist| %>
+  <tr>
+    <td><%=artist.name%></td>
+    <td><%=artist.skills%></td>
+    <td><a href="/artists/<%= artist.id %>">More info</a></td>
+    <td><a href="/artists/<%= artist.id %>/edit">Edit</a></td>
+    <td>
+    <form action="/artists/<%= artist.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete" class="waves-effect waves-light btn-small light-blue accent-2">
+  </form>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
+</table>

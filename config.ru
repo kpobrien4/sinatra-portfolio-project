@@ -8,4 +8,5 @@ end
 use Rack::MethodOverride
 use SessionsController
 use ProjectsController
+use ArtistsController
 run ApplicationController

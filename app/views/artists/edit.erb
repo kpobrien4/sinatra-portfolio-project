@@ -1,0 +1,20 @@
+<h2> Edit your info</h2>
+<% if @errors2  %>
+    <ul class="red-text text-darken-2">
+    <% @errors2.each do |error| %>
+     <li><%= error %></li>
+    <% end %>
+</ul> 
+
+<form action="/artists/<%= @artist.id %>" method="post">
+    <input type="hidden" value="patch" name="_method">
+    <label for="name">Name of artist</label>
+    <input type="text" name="artist[name]" id="name" value="<%= @artist.name %>"><br><br>
+    <label for="skills">Skills</label>
+    <input type="text" name="artist[skills]" id="skills" value="<%= @artist.skills %>"><br><br>
+    <label for="info">Some information about the artist</label>
+    <input type="text" name="artist[info]" id="info" value="<%= @artist.info %>"><br><br>
+    <label for="contact">Contact</label>
+    <input type="text" name="artist[contact]" id="contact" value="<%= @artist.contact %>"><br><br>
+    <input type="submit" value="Update Information" class="btn">
+</form>

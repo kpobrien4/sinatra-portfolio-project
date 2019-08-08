@@ -1,0 +1,21 @@
+<h2> Add an artist</h2>
+<% if @errorss  %>
+    <ul class="red-text text-darken-2">
+    <% @errorss.each do |error| %>
+     <li><%= error %></li>
+    <% end %>
+</ul>   
+
+<% end %>
+
+<form action="/artists" method="post">
+    <label for="name">Name of artist</label>
+    <input type="text" name="artist[name]" id="name" ><br><br>
+    <label for="skills">Artist's skills</label>
+    <input type="text" name="artist[skills]" id="skills" ><br><br>
+    <label for="info">About the artist</label>
+    <input type="text" name="artist[info]" id="info" ><br><br>
+    <label for="contact">Contact</label>
+    <input type="text" name="artist[contact]" id="contact" ><br><br>
+    <input type="submit" value="Post" class="waves-effect waves-light btn-small light-blue accent-2">
+</form>
