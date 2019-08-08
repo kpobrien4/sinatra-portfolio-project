@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  use Rack::Flash
 
 
         get '/projects' do
