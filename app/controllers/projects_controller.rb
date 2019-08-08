@@ -3,21 +3,25 @@ class ProjectsController < ApplicationController
 
 
         get '/projects' do
+          redirect_if_not_signed_in
           @projects = Project.all
           erb :'projects/index'
         end
 
         get '/projects/new' do
+          redirect_if_not_signed_in
           erb :'projects/new'
         end
 
         get '/projects/:id' do
+          redirect_if_not_signed_in
           set_project
           erb :'projects/show'
         end
       
         post '/projects' do
-          @project = Project.new(project_params)
+          redirect_if_not_signed_in
+          @project = current_user.projects.build(project_params)
           if @project.save
           redirect '/projects'
           else
@@ -27,11 +31,18 @@ class ProjectsController < ApplicationController
         end
 
         get '/projects/:id/edit' do
+          redirect_if_not_signed_in
           set_project
+          if @project.user == current_user
           erb :'projects/edit'
+          else 
+            flash[:notice] = "You are not authorized to do that."
+              redirect "/"
+          end
         end
 
         patch '/projects/:id' do
+          redirect_if_not_signed_in
           set_project
          if @project.update(project_params)
           redirect "/projects/#{@project.id}"
@@ -42,9 +53,15 @@ class ProjectsController < ApplicationController
         end
 
         delete '/projects/:id' do
-          set_project
+          redirect_if_not_signed_in
+          set_project 
+          if @project.user == current_user
           @project.destroy
           redirect "/projects"
+          else 
+            flash[:notice] = "You are not authorized to do that."
+              redirect "/"
+          end
         end
         
         private
@@ -53,7 +70,7 @@ class ProjectsController < ApplicationController
         end
 
         def project_params
-          { title: params[:project][:title], genre: params[:project][:genre], info: params[:project][:info] }
+          { title: params[:project][:title], genre: params[:project][:genre], info: params[:project][:info], contact: params[:project][:contact] }
         end
 
 end
