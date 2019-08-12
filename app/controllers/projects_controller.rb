@@ -34,7 +34,7 @@ class ProjectsController < ApplicationController
           redirect_if_not_signed_in
           set_project
           if @project.user == current_user
-          erb :'projects/edit'
+          erb :'/projects/edit'
           else 
             flash[:notice] = "You are not authorized to do that."
               redirect "/"

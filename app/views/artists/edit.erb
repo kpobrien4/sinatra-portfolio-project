@@ -5,6 +5,7 @@
      <li><%= error %></li>
     <% end %>
 </ul> 
+<% end %>
 
 <form action="/artists/<%= @artist.id %>" method="post">
     <input type="hidden" value="patch" name="_method">
